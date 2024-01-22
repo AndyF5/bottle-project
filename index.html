@@ -1,6 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bottle Project!</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
+    <style>
+      body {
+        padding: 6px;
+      }
+    </style>
+  </head>
   <body>
     <h1>Bottle Project!</h1>
+
+    <p>Is Kairi's bottle project going to be the best?</p>
+
+    <p id="reaction"></p>
+
+    <button id="yes-btn" class="btn btn-success">Yes</button>
+
+    <button id="no-btn" class="btn btn-danger">No</button>
   </body>
+
+  <script>
+    let clicks = 0;
+
+    let noBtn = document.querySelector("#no-btn");
+
+    let reaction = document.querySelector("#reaction");
+
+    noBtn.addEventListener("click", () => {
+      clicks++;
+      noBtn.style.marginLeft = clicks * 100 + "px";
+
+      reaction.innerHTML = "😡".repeat(clicks);
+
+      reaction.style["font-size"] = clicks * 12 + "px";
+    });
+
+    let yesBtn = document.querySelector("#yes-btn");
+
+    yesBtn.addEventListener("click", () => {
+      let rand = Math.random();
+
+      reaction.innerHTML = "";
+
+      if (rand < 0.5) {
+        const defaults = {
+          spread: 360,
+          ticks: 100,
+          gravity: 0,
+          decay: 0.94,
+          startVelocity: 30,
+          shapes: ["heart"],
+          colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+        };
+
+        confetti({
+          ...defaults,
+          particleCount: 50,
+          scalar: 2,
+        });
+
+        confetti({
+          ...defaults,
+          particleCount: 25,
+          scalar: 3,
+        });
+
+        confetti({
+          ...defaults,
+          particleCount: 10,
+          scalar: 4,
+        });
+      } else {
+        const defaults = {
+          spread: 360,
+          ticks: 100,
+          gravity: 0,
+          decay: 0.94,
+          startVelocity: 30,
+        };
+
+        confetti({
+          ...defaults,
+          particleCount: 30,
+          scalar: 1.2,
+          shapes: ["circle", "square"],
+          colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+        });
+
+        confetti({
+          ...defaults,
+          particleCount: 20,
+          scalar: 2,
+          shapes: ["emoji"],
+          shapeOptions: {
+            emoji: {
+              value: ["🦄", "🌈"],
+            },
+          },
+        });
+      }
+    });
+  </script>
 </html>
