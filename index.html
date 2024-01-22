@@ -40,9 +40,9 @@
 
     noBtn.addEventListener("click", () => {
       clicks++;
-      noBtn.style.marginLeft = clicks * 100 + "px";
+      noBtn.style.marginLeft = clicks * 15 + "vw";
 
-      reaction.innerHTML = "😡".repeat(clicks);
+      reaction.innerHTML = "👇" + "😡".repeat(clicks);
 
       reaction.style["font-size"] = clicks * 12 + "px";
     });
